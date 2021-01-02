@@ -1,0 +1,39 @@
+package main 
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"github.com/gorilla/mux"
+
+)
+
+func helloworld(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello world Balakrishna reddy")
+
+}
+
+func name(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "This is testing program any of the name")
+}
+func simple(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "This is method is used to declaring the delete method i used")
+}
+func bala(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf( w, "This method is used to decalring the  put method")
+}
+func handleRequests() {
+	myRouter := mux.NewRouter().StrictSlash(true)
+	myRouter.HandleFunc("/0", helloworld).Methods("GET")
+	myRouter.HandleFunc("/1", name).Methods("POST")
+	myRouter.HandleFunc("/2", simple).Methods("DELETE")
+	myRouter.HandleFunc("/3", bala).Methods("PUT")
+	log.Fatal(http.ListenAndServe(":8081", myRouter))
+
+}
+
+func main() {
+	fmt.Println("Go ORM practising program")
+	handleRequests()
+
+}
